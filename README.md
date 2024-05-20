@@ -131,21 +131,48 @@ docker compose -p kitchenpos up -d
 
 ### 주문
 
-| 한글명            | 영문명                    | 설명                                    |
-|----------------|------------------------|---------------------------------------|
-| 주문을 하지 않은 손님   | Guest                  | 방문은 했지만 주문을 하지 않은 고객                  |
-| 주문을 한 손님       | Customer               | 주문을 한 고객                              |
-| 주문 테이블         | Order Table            | 매장 주문 손님이 사용하는 테이블                    |
-| 주문 테이블 이름      | Order Table Name       | e.g. 1번 테이블 / 2번 테이블 / 3번 테이블         |
-| 사용하지 않는 주문 테이블 | Cleared Order Table    | 손님이 사용중이지 않은 테이블                      |
-| 사용중인 주문 테이블    | Occupied Order Table   | 손님이 사용중인 테이블                          |
-| 주문             | Order                  | 손님이 메뉴를 구매하기 위한 요청                    |
-| 주문 항목          | Order Line Item        | 손님이 요청한 메뉴 모음                         |
-| 주문 항목 수량       | Order Line Item Count  | 손님이 주문한 메뉴의 개수                        |
-| 주문 유형          | Order Type             | 매장 주문 / 포장 주문 / 배달 주문                 |
-| 주문 상태          | Order Status           | 대기중, 접수됨, 제공됨, 배달중, 배달 완료, 완료         |
-| 배달             | Order Delivery         | 손님이 요청한 메뉴를 포장하여 매장밖 지정된 목적지로 전달하는 과정 |
-| 배달 담당자         | Order Delivery Rider   | 손님에게 메뉴를 전달하는 역할을 맡은 사람               |
-| 배달 주소          | Order Delivery Address | e.g 서울특별시 강남구 테헤란로                    |
+| 한글명      | 영문명                   | 설명                 |
+|----------|-----------------------|--------------------|
+| 주문       | Order                 | 손님이 메뉴를 구매하기 위한 요청 |
+| 주문 항목    | Order Line Item       | 손님이 요청한 메뉴 모음      |
+| 주문 항목 수량 | Order Line Item Count | 손님이 주문한 메뉴의 개수     |
+
+#### 포장 주문
+
+| 한글명   | 영문명                     | 설명                  |
+|-------|-------------------------|---------------------|
+| 포장 주문 | Takeout Order           | 손님이 주문한 메뉴를 포장하여 제공 |
+| 주문 대기 | Takeout Order Waiting   | 포장 주문을 요청된 상태       |
+| 주문 접수 | Takeout Order Accepted  | 포장 주문이 접수된 상태       |
+| 주문 제공 | Takeout Order Served    | 포장 주문한 메뉴를 제공한 상태   |
+| 주문 완료 | Takeout Order Completed | 포장 주문이 완료된 상태       |
+
+#### 배달 주문
+
+| 한글명    | 영문명                       | 설명                               |
+|--------|---------------------------|----------------------------------|
+| 배달 주문  | Delivery Order            | 손님이 구매한 메뉴를 매장밖 지정된 목적지로 포장하여 제공 |
+| 주문 대기  | Delivery Order Waiting    | 배달 주문을 요청된 상태                    |
+| 주문 접수  | Delivery Order Accepted   | 배달 주문이 접수된 상태                    |
+| 주문 제공  | Delivery Order Served     | 배달 주문한 메뉴를 전달할 준비한 상태            |
+| 주문 제공  | Delivery Order Delivering | 배달 주문한 메뉴를 전달중인 상태               |
+| 주문 제공  | Delivery Order Delivered  | 배달 주문한 메뉴를 전달이 완료된 상태            |
+| 주문 완료  | Delivery Order Completed  | 배달 주문이 완료된 상태                    |
+| 배달 담당자 | Delivery Rider            | 손님에게 메뉴를 전달하는 역할을 맡은 사람          |
+| 배달 주소  | Delivery Address          | e.g 서울특별시 강남구 테헤란로               |
+
+#### 매장 주문
+
+| 한글명            | 영문명                    | 설명                            |
+|----------------|------------------------|-------------------------------|
+| 매장 주문          | Eat-In Order           | 매장 주문 손님이 사용하는 테이블            |
+| 주문 대기          | Eat-In Order Waiting   | 매장 주문이 요청된 상태                 |
+| 주문 접수          | Eat-In Order Accepted  | 매장 주문이 접수된 상태                 |
+| 주문 제공          | Eat-In Order Served    | 매장 주문한 메뉴를 제공한 상태             |
+| 주문 완료          | Eat-In Order Completed | 매장 주문이 완료된 상태                 |
+| 주문 테이블         | Eat-In Table           | 매장 주문 손님이 사용하는 테이블            |
+| 주문 테이블 이름      | Eat-In Table Name      | e.g. 1번 테이블 / 2번 테이블 / 3번 테이블 |
+| 사용하지 않는 주문 테이블 | Cleared Eat-In Table   | 손님이 사용중이지 않은 테이블              |
+| 사용중인 주문 테이블    | Occupied Eat-In Table  | 손님이 사용중인 테이블                  |
 
 ## 모델링
