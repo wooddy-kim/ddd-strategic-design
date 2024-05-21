@@ -164,8 +164,8 @@ docker compose -p kitchenpos up -d
 | 주문 대기  | Delivery Order Waiting    | 배달 주문을 요청된 상태                    |
 | 주문 접수  | Delivery Order Accepted   | 배달 주문이 접수된 상태                    |
 | 주문 제공  | Delivery Order Served     | 배달 주문한 메뉴를 전달할 준비한 상태            |
-| 주문 제공  | Delivery Order Delivering | 배달 주문한 메뉴를 전달중인 상태               |
-| 주문 제공  | Delivery Order Delivered  | 배달 주문한 메뉴를 전달이 완료된 상태            |
+| 배달 중   | Delivery Order Delivering | 배달 주문한 메뉴를 전달중인 상태               |
+| 배달 완료  | Delivery Order Delivered  | 배달 주문한 메뉴를 전달이 완료된 상태            |
 | 주문 완료  | Delivery Order Completed  | 배달 주문이 완료된 상태                    |
 | 배달 담당자 | Delivery Rider            | 손님에게 메뉴를 전달하는 역할을 맡은 사람          |
 | 배달 주소  | Delivery Address          | e.g 서울특별시 강남구 테헤란로               |
@@ -255,6 +255,29 @@ docker compose -p kitchenpos up -d
 
 
 ### 주문 (Order)
+
+```mermaid
+stateDiagram-v2
+    [*] --> TakeoutOrderWaiting: 매장 주문 요청
+    TakeoutOrderWaiting --> TakeoutOrderAccepted: 접수
+    TakeoutOrderAccepted --> TakeoutOrderServed: 전달
+    TakeoutOrderServed --> TakeoutOrderCompleted: 완료
+    TakeoutOrderCompleted --> [*]
+
+    [*] --> DeliveryOrderWaiting: 배달 주문 요청
+    DeliveryOrderWaiting --> DeliveryOrderAccepted: 접수
+    DeliveryOrderAccepted --> DeliveryOrderServed: 전달
+    DeliveryOrderServed --> DeliveryOrderDelivering: 배달 시작
+    DeliveryOrderDelivering --> DeliveryOrderDelivered: 배달 완료
+    DeliveryOrderDelivered --> DeliveryOrderCompleted: 완료
+    DeliveryOrderCompleted --> [*]
+
+    [*] --> EatInOrderWaiting: 포장 주문 요청
+    EatInOrderWaiting --> EatInOrderAccepted: 접수
+    EatInOrderAccepted --> EatInOrderServed: 전달
+    EatInOrderServed --> EatInOrderCompleted: 완료
+    EatInOrderCompleted --> [*]
+```
 
 #### 1. 포장 주문 (Takeout Order)
 
