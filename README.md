@@ -112,10 +112,10 @@ docker compose -p kitchenpos up -d
 
 ### 메뉴 그룹
 
-| 한글명      | 영문명             | 설명                       |
-|----------|-----------------|--------------------------|
-| 메뉴 그룹    | Menu Group      | 여러 메뉴들을 특정 기준으로 묶은 모음    |
-| 메뉴 그룹 이름 | Menu Group Name | e.g. 추천메뉴 / 이벤트메뉴 / 셋트메뉴 |
+| 한글명      | 영문명             | 설명                                       |
+|----------|-----------------|------------------------------------------|
+| 메뉴 그룹    | Menu Group      | 여러 메뉴들을 분류하기 위해 묶은 모음                    |
+| 메뉴 그룹 이름 | Menu Group Name | 메뉴 모음을 대표하는 이름, e.g. 추천메뉴 / 이벤트메뉴 / 셋트메뉴 |
 
 ### 메뉴
 
@@ -131,54 +131,55 @@ docker compose -p kitchenpos up -d
 
 ### 주문 테이블
 
-| 한글명            | 영문명                  | 설명                            |
-|----------------|----------------------|-------------------------------|
-| 주문 테이블         | Order Table          | 매장 주문 손님이 사용하는 테이블            |
-| 주문 테이블 이름      | Order Table Name     | e.g. 1번 테이블 / 2번 테이블 / 3번 테이블 |
-| 사용하지 않는 주문 테이블 | Cleared Order Table  | 손님이 사용중이지 않은 테이블              |
-| 사용중인 주문 테이블    | Occupied Order Table | 손님이 사용중인 테이블                  |
+| 한글명            | 영문명                      | 설명                            |
+|----------------|--------------------------|-------------------------------|
+| 주문 테이블         | Order Table              | 매장 주문 손님이 사용하는 테이블            |
+| 주문 테이블 이름      | Order Table Name         | e.g. 1번 테이블 / 2번 테이블 / 3번 테이블 |
+| 주문 테이블 손님수     | Order Table Guest Number | 테이블을 사용하는 손님수                 |
+| 사용하지 않는 주문 테이블 | Cleared Order Table      | 손님이 사용중이지 않은 테이블              |
+| 사용중인 주문 테이블    | Occupied Order Table     | 손님이 사용중인 테이블                  |
 
 ### 주문
 
-| 한글명      | 영문명                   | 설명                 |
-|----------|-----------------------|--------------------|
-| 주문       | Order                 | 손님이 메뉴를 구매하기 위한 요청 |
-| 주문 항목    | Order Line Item       | 손님이 요청한 메뉴 모음      |
-| 주문 항목 수량 | Order Line Item Count | 손님이 주문한 메뉴의 개수     |
-
 #### 포장 주문
 
-| 한글명   | 영문명                     | 설명                  |
-|-------|-------------------------|---------------------|
-| 포장 주문 | Takeout Order           | 손님이 주문한 메뉴를 포장하여 제공 |
-| 주문 대기 | Takeout Order Waiting   | 포장 주문을 요청된 상태       |
-| 주문 접수 | Takeout Order Accepted  | 포장 주문이 접수된 상태       |
-| 주문 제공 | Takeout Order Served    | 포장 주문한 메뉴를 제공한 상태   |
-| 주문 완료 | Takeout Order Completed | 포장 주문이 완료된 상태       |
+| 한글명      | 영문명                     | 설명                  |
+|----------|-------------------------|---------------------|
+| 포장 주문    | Takeout Order           | 손님이 주문한 메뉴를 포장하여 제공 |
+| 주문 대기    | Takeout Order Waiting   | 포장 주문을 요청된 상태       |
+| 주문 접수    | Takeout Order Accepted  | 포장 주문이 접수된 상태       |
+| 주문 제공    | Takeout Order Served    | 포장 주문한 메뉴를 제공한 상태   |
+| 주문 완료    | Takeout Order Completed | 포장 주문이 완료된 상태       |
+| 주문 항목    | Order Line Item         | 손님이 요청한 메뉴 모음       |
+| 주문 항목 수량 | Order Line Item Count   | 손님이 주문한 메뉴의 개수      |
 
 #### 배달 주문
 
-| 한글명    | 영문명                       | 설명                               |
-|--------|---------------------------|----------------------------------|
-| 배달 주문  | Delivery Order            | 손님이 구매한 메뉴를 매장밖 지정된 목적지로 포장하여 제공 |
-| 주문 대기  | Delivery Order Waiting    | 배달 주문을 요청된 상태                    |
-| 주문 접수  | Delivery Order Accepted   | 배달 주문이 접수된 상태                    |
-| 주문 제공  | Delivery Order Served     | 배달 주문한 메뉴를 전달할 준비한 상태            |
-| 배달 중   | Delivery Order Delivering | 배달 주문한 메뉴를 전달중인 상태               |
-| 배달 완료  | Delivery Order Delivered  | 배달 주문한 메뉴를 전달이 완료된 상태            |
-| 주문 완료  | Delivery Order Completed  | 배달 주문이 완료된 상태                    |
-| 배달 담당자 | Delivery Rider            | 손님에게 메뉴를 전달하는 역할을 맡은 사람          |
-| 배달 주소  | Delivery Address          | e.g 서울특별시 강남구 테헤란로               |
+| 한글명      | 영문명                       | 설명                               |
+|----------|---------------------------|----------------------------------|
+| 배달 주문    | Delivery Order            | 손님이 구매한 메뉴를 매장밖 지정된 목적지로 포장하여 제공 |
+| 주문 대기    | Delivery Order Waiting    | 배달 주문을 요청된 상태                    |
+| 주문 접수    | Delivery Order Accepted   | 배달 주문이 접수된 상태                    |
+| 주문 제공    | Delivery Order Served     | 배달 주문한 메뉴를 전달할 준비한 상태            |
+| 배달 중     | Delivery Order Delivering | 배달 주문한 메뉴를 전달중인 상태               |
+| 배달 완료    | Delivery Order Delivered  | 배달 주문한 메뉴를 전달이 완료된 상태            |
+| 주문 완료    | Delivery Order Completed  | 배달 주문이 완료된 상태                    |
+| 배달 담당자   | Delivery Rider            | 손님에게 메뉴를 전달하는 역할을 맡은 사람          |
+| 배달 주소    | Delivery Address          | e.g 서울특별시 강남구 테헤란로               |
+| 주문 항목    | Order Line Item           | 손님이 요청한 메뉴 모음                    |
+| 주문 항목 수량 | Order Line Item Count     | 손님이 주문한 메뉴의 개수                   |
 
 #### 매장 주문
 
-| 한글명            | 영문명                    | 설명                            |
-|----------------|------------------------|-------------------------------|
-| 매장 주문          | Eat-In Order           | 매장 주문 손님이 사용하는 테이블            |
-| 주문 대기          | Eat-In Order Waiting   | 매장 주문이 요청된 상태                 |
-| 주문 접수          | Eat-In Order Accepted  | 매장 주문이 접수된 상태                 |
-| 주문 제공          | Eat-In Order Served    | 매장 주문한 메뉴를 제공한 상태             |
-| 주문 완료          | Eat-In Order Completed | 매장 주문이 완료된 상태                 |
+| 한글명      | 영문명                    | 설명                 |
+|----------|------------------------|--------------------|
+| 매장 주문    | Eat-In Order           | 매장 주문 손님이 사용하는 테이블 |
+| 주문 대기    | Eat-In Order Waiting   | 매장 주문이 요청된 상태      |
+| 주문 접수    | Eat-In Order Accepted  | 매장 주문이 접수된 상태      |
+| 주문 제공    | Eat-In Order Served    | 매장 주문한 메뉴를 제공한 상태  |
+| 주문 완료    | Eat-In Order Completed | 매장 주문이 완료된 상태      |
+| 주문 항목    | Order Line Item        | 손님이 요청한 메뉴 모음      |
+| 주문 항목 수량 | Order Line Item Count  | 손님이 주문한 메뉴의 개수     |
 
 ## 모델링
 
@@ -186,8 +187,8 @@ docker compose -p kitchenpos up -d
 
 #### 속성
 
-- ``Product``는 가격을 표현하는 ``Product Price`` 를 가진다.
-- ``Product``는 다른 ``Product`` 과 구별할 수 있도록 ``Product Name`` 를 가진다.
+- ``Product``는 상품을 구매하기 위해 지불해야하는 ``Product Price`` 를 가진다.
+- ``Product``는 다른 ``Product`` 과 식별할 수 있도록 ``Product Name`` 를 가진다.
 
 #### 행위
 
@@ -203,7 +204,7 @@ docker compose -p kitchenpos up -d
 
 #### 속성
 
-- ``Menu Group`` 은 다른 `Menu Group` 과 구별할 수 있도록  ``Menu Group Name`` 을 가진다.
+- ``Menu Group`` 은 다른 `Menu` 모음을 대표하는  ``Menu Group Name`` 을 가진다.
 
 #### 정책
 
@@ -213,9 +214,9 @@ docker compose -p kitchenpos up -d
 
 #### 속성
 
-- ``Menu`` 는 다른 ``Menu`` 와 구별할 수 있도록 ``Menu Name`` 을 가진다.
-- ``Menu`` 는 가격을 표현하는 ``Menu Price`` 를 가진다.
-- ``Menu`` 는 구성된 ``Product`` 를 표현하는 ``Menu Product`` 를 가진다.
+- ``Menu`` 는 상품들을 대표하는 ``Menu Name`` 을 가진다.
+- ``Menu`` 는 손님이 지불해야되는 ``Menu Price`` 를 가진다.
+- ``Menu`` 는 손님에게 제공하는 ``Menu Product`` 를 가진다.
 - ``Menu`` 는 분류를 위해 ``Menu Group`` 을 가진다.
 - ``Menu`` 는 `Hide Menu` 인지 ``Displayed Menu`` 인지를 나타내는 상태를 가진다.
 
@@ -238,7 +239,7 @@ docker compose -p kitchenpos up -d
 #### 속성
 
 - ``Order Table`` 은 다른 ``Order Table`` 과 구별할 수 있도록 ``Order Table Name`` 을 가진다.
-- ``Order Table`` 은 방문한 손님 수를 나타내는 ``Order Table Guest Number`` 를 가진다.
+- ``Order Table`` 은 테이블을 사용하는 손님수를 표현하기 위해  ``Order Table Guest Number`` 를 가진다.
 - ``Order Table`` 은 ``Cleared Eat-In Table`` 인지 ``Occupied Eat-In Table`` 인지를 나타내는 상태를 가진다.
 
 #### 행위
@@ -252,7 +253,6 @@ docker compose -p kitchenpos up -d
 - ``Order Table Name`` 은 비워 둘 수 없다.
 - ``Order Table Guest Number`` 는 0 이상이어야 한다.
 - 완료되지 않은 ``Eat-In Order`` 가 있는 ``Order Table`` 은 ``Cleared Eat-In Table`` 상태로 설정할 수 없다.
-
 
 ### 주문 (Order)
 
@@ -283,8 +283,9 @@ stateDiagram-v2
 
 ##### 속성
 
-- ``Takeout Order`` 는 주문 항목을 나타내는 ``Order Line Item`` 을 가진다.
-- ``Takeout Order`` 는 상태를 관리하기 위해 ``Takeout Order Waiting``, ``Takeout Order Accepted``, ``Takeout Order Served``, ``Takeout Order Completed`` 를 가진다.
+- ``Takeout Order`` 는 손님이 요청한 메뉴 모음인 ``Order Line Item`` 을 가진다.
+- ``Takeout Order`` 는 상태를 관리하기
+  위해 ``Takeout Order Waiting``, ``Takeout Order Accepted``, ``Takeout Order Served``, ``Takeout Order Completed`` 를 가진다.
 
 ##### 행위
 
@@ -304,9 +305,11 @@ stateDiagram-v2
 
 ##### 속성
 
-- ``Delivery Order`` 는 주문 항목을 나타내는 ``Order Line Item`` 을 가진다.
-- ``Delivery Order`` 는 배달 주소를 나타내는 ``Delivery Address`` 를 가진다.
-- ``Delivery Order`` 는 상태를 관리하기 위해 ``Delivery Order Waiting``, ``Delivery Order Accepted``, ``Delivery Order Served``, ``Delivery Order Delivering``, ``Delivery Order Delivered``, ``Delivery Order Completed`` 를 가진다.
+- ``Delivery Order`` 는 손님이 요청한 메뉴 모음인 ``Order Line Item`` 을 가진다.
+- ``Delivery Order`` 는 배달 도착지인 ``Delivery Address`` 를 가진다.
+- ``Delivery Order`` 는 상태를 관리하기
+  위해 ``Delivery Order Waiting``, ``Delivery Order Accepted``, ``Delivery Order Served``, ``Delivery Order Delivering``, ``Delivery Order Delivered``, ``Delivery Order Completed``
+  를 가진다.
 
 ##### 행위
 
@@ -328,13 +331,13 @@ stateDiagram-v2
 - ``Delivery Order`` 는 ``Delivery Order Delivered`` 상태에서만 ``Delivery Order Completed`` 상태로 변경할 수 있다.
 - ``Delivery Order`` 상태가 ``Delivery Order Accepted`` 로 변경될 때 ``Delivery Rider`` 를 호출한다.
 
-
 #### 3. 매장 주문
 
 ##### 속성
 
-- ``Eat-In Order`` 는 주문 항목을 나타내는 ``Order Line Item`` 을 가진다.
-- ``Eat-In Order`` 는 상태를 관리하기 위해 ``Eat-In Order Waiting``, ``Eat-In Order Accepted``, ``Eat-In Order Served``, ``Eat-In Order Completed`` 를 가진다.
+- ``Eat-In Order`` 는 손님이 요청한 메뉴 모음인 ``Order Line Item`` 을 가진다.
+- ``Eat-In Order`` 는 상태를 관리하기
+  위해 ``Eat-In Order Waiting``, ``Eat-In Order Accepted``, ``Eat-In Order Served``, ``Eat-In Order Completed`` 를 가진다.
 
 ##### 행위
 
