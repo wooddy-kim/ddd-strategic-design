@@ -192,13 +192,13 @@ docker compose -p kitchenpos up -d
 
 #### 행위
 
+- ``Product Price`` 를 생성한다.
+    * ``Product Name`` 은 ``Black Word`` 가 포함되어서는 안된다.
+    * ``Product Price`` 는 0원 이상이어야 한다.
 - ``Product Price`` 를 변경한다.
-
-#### 정책
-
-- ``Product Name`` 은 ``Black Word`` 가 포함되어서는 안된다.
-- ``Product Price`` 는 0원 이상이어야 한다.
-- ``Product Price`` 가 변경될 때 ``Menu`` 의 ``Menu Price`` 보다 크면 ``Menu`` 는 ``Hide Menu`` 가 된다.
+    * ``Product Name`` 은 ``Black Word`` 가 포함되어서는 안된다.
+    * ``Product Price`` 는 0원 이상이어야 한다.
+    * ``Product Price`` 가 변경될 때 ``Menu`` 의 ``Menu Price`` 보다 크면 ``Menu`` 는 ``Hide Menu`` 가 된다.
 
 ### 메뉴 그룹 (Menu Group)
 
@@ -206,9 +206,10 @@ docker compose -p kitchenpos up -d
 
 - ``Menu Group`` 은 다른 `Menu` 모음을 대표하는  ``Menu Group Name`` 을 가진다.
 
-#### 정책
+### 행위
 
-- ``Menu Group Name`` 은 비워 둘 수 없다.
+- ``Menu Group Name`` 을 생성한다.
+    * ``Menu Group Name`` 은 비워 둘 수 없다.
 
 ### 메뉴 (Menu)
 
@@ -220,19 +221,18 @@ docker compose -p kitchenpos up -d
 - ``Menu`` 는 분류를 위해 ``Menu Group`` 을 가진다.
 - ``Menu`` 는 `Hide Menu` 인지 ``Displayed Menu`` 인지를 나타내는 상태를 가진다.
 
-#### 횅위
+#### 행위
 
+- ``Menu`` 를 생성한다.
+    * ``Menu Price`` 는 ``Menu Product Price`` 의 합보다 크거나 같아야 한다.
+    * ``Menu Name`` 은 ``Black Word`` 가 포함되어서는 안된다.
+    * ``Menu Product`` 가 존재하지 않으면 ``Menu`` 를 생성할 수 없다.
+    * ``Menu Product`` 는 1개 이상이어야 하고 ``Menu Product Count`` 의 총 합이 0 이상이어야 한다.
 - ``Menu Price`` 를 변경한다.
+    * ``Menu Price`` 는 ``Menu Product Price`` 의 합보다 크거나 같아야 한다.
 - ``Menu``를 `Hide Menu` 상태로 변경한다.
 - ``Menu``를 `Displayed Menu` 상태로 변경한다.
-
-#### 정책
-
-- ``Menu Price`` 는 0원 이상이어야 한다.
-- ``Menu Name`` 은 ``Black Word`` 가 포함되어서는 안된다.
-- ``Menu Product`` 가 존재하지 않으면 ``Menu`` 를 생성할 수 없다.
-- ``Menu Product`` 는 1개 이상이어야 하고 ``Menu Product Count`` 의 총 합이 0 이상이어야 한다.
-- ``Menu Product Price`` 의 합은 ``Menu Price`` 보다 크거나 같아야 한다.
+    * ``Menu Price`` 가 ``Menu Product Price`` 의 합보다 크거나 같아야 한다.
 
 ### 주문 테이블 (Order Table)
 
@@ -244,15 +244,13 @@ docker compose -p kitchenpos up -d
 
 #### 행위
 
+- ``Order Table`` 을 생성한다.
+    * ``Order Table Name`` 은 비워 둘 수 없다.
 - ``Order Table`` 을 방문한 손님 수를 변경한다.
-- ``Order Table`` 을 빈 테이블로 설정한다.
-- ``Order Table`` 을 사용하지 않는 테이블로 설정한다.
-
-#### 정책
-
-- ``Order Table Name`` 은 비워 둘 수 없다.
-- ``Order Table Guest Number`` 는 0 이상이어야 한다.
-- 완료되지 않은 ``Eat-In Order`` 가 있는 ``Order Table`` 은 ``Cleared Eat-In Table`` 상태로 설정할 수 없다.
+    * ``Order Table Guest Number`` 는 0 이상이어야 한다.
+- ``Order Table`` 을 ``Occupied Order Table`` 상태로 변경한다.
+- ``Order Table`` 을 ``Cleared Eat-In Table`` 상태로 변경한다.
+    * ``Eat-In Order Completed`` 상태가 아닌 ``Eat-In Order`` 가 존재한다면 ``Cleared Eat-In Table`` 상태로 설정할 수 없다.
 
 ### 주문 (Order)
 
@@ -289,17 +287,15 @@ stateDiagram-v2
 
 ##### 행위
 
-- ``Takeout Order`` 를 ``Takeout Order Waiting`` 상태로 변경한다.
+- ``Takeour Order`` 를 등록한다.
+    * ``Order Line Item Count`` 가 1 이상이어야 한다.
+    * ``Takeout Order Waiting`` 상태로 설정된다.
 - ``Takeout Order`` 를 ``Takeout Order Accepted`` 상태로 변경한다.
+    * ``Takeout Order Waiting`` 상태에서만 변경할 수 있다.
 - ``Takeout Order`` 를 ``Takeout Order Served`` 상태로 변경한다.
+    * ``Takeout Order Accepted`` 상태에서만 변경할 수 있다.
 - ``Takeout Order`` 를 ``Takeout Order Completed`` 상태로 변경한다.
-
-##### 정책
-
-- ``Takeout Order`` 는 ``Order Line Item Count`` 가 0 이상이어야 한다.
-- ``Takeout Order`` 는 ``Takeout Order Waiting`` 상태에서만 ``Takeout Order Accepted`` 상태로 변경할 수 있다.
-- ``Takeout Order`` 는 ``Takeout Order Accepted`` 상태에서만 ``Takeout Order Served`` 상태로 변경할 수 있다.
-- ``Takeout Order`` 는 ``Takeout Order Served`` 상태에서만 ``Takeout Order Completed`` 상태로 변경할 수 있다.
+    * ``Takeout Order Served`` 상태에서만 변경할 수 있다.
 
 #### 2. 배달 주문
 
@@ -313,23 +309,21 @@ stateDiagram-v2
 
 ##### 행위
 
-- ``Delivery Order`` 를 ``Delivery Order Waiting`` 상태로 변경한다.
+- ``Delivery Order`` 를 등록한다.
+    * ``Order Line Item Count`` 가 1 이상이어야 한다.
+    * ``Delivery Address`` 가 비워져 있어서는 안된다.
+    * ``Delivery Order Waiting`` 상태로 설정된다.
 - ``Delivery Order`` 를 ``Delivery Order Accepted`` 상태로 변경한다.
+    * ``Delivery Order Waiting`` 상태에서만 변경할 수 있다
+    * ``Delivery Rider`` 를 호출한다.
 - ``Delivery Order`` 를 ``Delivery Order Served`` 상태로 변경한다.
+    * ``Delivery Order Accepted`` 상태에서만 변경할 수 있다.
 - ``Delivery Order`` 를 ``Delivery Order Delivering`` 상태로 변경한다.
+    * ``Delivery Order Served`` 상태에서만 변경할 수 있다.
 - ``Delivery Order`` 를 ``Delivery Order Delivered`` 상태로 변경한다.
+    * ``Delivery Order Delivering`` 상태에서만 변경할 수 있다.
 - ``Delivery Order`` 를 ``Delivery Order Completed`` 상태로 변경한다.
-
-##### 정책
-
-- ``Delivery Order`` 는 ``Order Line Item Count`` 가 0 이상이어야 한다.
-- ``Delivery Order`` 는 ``Delivery Address`` 가 비워져 있어서는 안된다.
-- ``Delivery Order`` 는 ``Delivery Order Waiting`` 상태에서만 ``Delivery Order Accepted`` 상태로 변경할 수 있다.
-- ``Delivery Order`` 는 ``Delivery Order Accepted`` 상태에서만 ``Delivery Order Served`` 상태로 변경할 수 있다.
-- ``Delivery Order`` 는 ``Delivery Order Served`` 상태에서만 ``Delivery Order Delivering`` 상태로 변경할 수 있다.
-- ``Delivery Order`` 는 ``Delivery Order Delivering`` 상태에서만 ``Delivery Order Delivered`` 상태로 변경할 수 있다.
-- ``Delivery Order`` 는 ``Delivery Order Delivered`` 상태에서만 ``Delivery Order Completed`` 상태로 변경할 수 있다.
-- ``Delivery Order`` 상태가 ``Delivery Order Accepted`` 로 변경될 때 ``Delivery Rider`` 를 호출한다.
+    * ``Delivery Order Delivered`` 상태에서만 변경할 수 있다.
 
 #### 3. 매장 주문
 
@@ -341,17 +335,15 @@ stateDiagram-v2
 
 ##### 행위
 
-- ``Order Table`` 에 ``Eat-In Order`` 를 등록한다.
-- ``Eat-In Order`` 를 ``Eat-In Order Waiting`` 상태로 변경한다.
+- ``Eat-In Order`` 를 등록한다.
+    * ``Order Line Item Count`` 가 0 이상이어야 한다.
+    * ``Eat-In Order Waiting`` 상태로 설정된다.
+    * ``Order Table`` 상태를 ``Occupied Eat-In Table`` 로 변경한다.
 - ``Eat-In Order`` 를 ``Eat-In Order Accepted`` 상태로 변경한다.
+  * ``Eat-In Order Waiting`` 상태에서만 변경할 수 있다
 - ``Eat-In Order`` 를 ``Eat-In Order Served`` 상태로 변경한다.
+  * ``Eat-In Order Accepted`` 상태에서만 변경할 수 있다.
 - ``Eat-In Order`` 를 ``Eat-In Order Completed`` 상태로 변경한다.
+  * ``Eat-In Order Served`` 상태에서만 변경할 수 있다.
+  * ``Order Table`` 을 빈 테이블로 설정한다.
 
-##### 정책
-
-- ``Eat-In Order`` 는 ``Order Line Item Count`` 가 0 이상이어야 한다.
-- ``Eat-In Order`` 는 ``Eat-In Order Waiting`` 상태에서만 ``Eat-In Order Accepted`` 상태로 변경할 수 있다.
-- ``Eat-In Order`` 는 ``Eat-In Order Accepted`` 상태에서만 ``Eat-In Order Served`` 상태로 변경할 수 있다.
-- ``Eat-In Order`` 는 ``Eat-In Order Served`` 상태에서만 ``Eat-In Order Completed`` 상태로 변경할 수 있다.
-- ``Eat-In Order`` 상태가 ``Eat-In Order Completed`` 로 변경될 때 ``Order Table`` 을 빈 테이블로 설정한다.
-- ``Order Table`` 의 상태가 ``Occupied Eat-In Table`` 인 경우 ``Eat-In Order`` 를 등록할 수 없다.
