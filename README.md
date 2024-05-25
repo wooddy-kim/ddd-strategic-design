@@ -112,10 +112,10 @@ docker compose -p kitchenpos up -d
 
 ### 메뉴 그룹
 
-| 한글명      | 영문명             | 설명                       |
-|----------|-----------------|--------------------------|
-| 메뉴 그룹    | Menu Group      | 여러 메뉴들을 특정 기준으로 묶은 모음    |
-| 메뉴 그룹 이름 | Menu Group Name | e.g. 추천메뉴 / 이벤트메뉴 / 셋트메뉴 |
+| 한글명      | 영문명             | 설명                                       |
+|----------|-----------------|------------------------------------------|
+| 메뉴 그룹    | Menu Group      | 여러 메뉴들을 분류하기 위해 묶은 모음                    |
+| 메뉴 그룹 이름 | Menu Group Name | 메뉴 모음을 대표하는 이름, e.g. 추천메뉴 / 이벤트메뉴 / 셋트메뉴 |
 
 ### 메뉴
 
@@ -129,50 +129,139 @@ docker compose -p kitchenpos up -d
 | 숨김 메뉴    | Hide Menu          | 손님에게 메뉴가 숨겨진 상태     |
 | 노출 메뉴    | Displayed Menu     | 손님에게 메뉴가 노출된 상태     |
 
-### 주문
+### 주문 테이블
 
-| 한글명      | 영문명                   | 설명                 |
-|----------|-----------------------|--------------------|
-| 주문       | Order                 | 손님이 메뉴를 구매하기 위한 요청 |
-| 주문 항목    | Order Line Item       | 손님이 요청한 메뉴 모음      |
-| 주문 항목 수량 | Order Line Item Count | 손님이 주문한 메뉴의 개수     |
+| 한글명            | 영문명                      | 설명                            |
+|----------------|--------------------------|-------------------------------|
+| 주문 테이블         | Order Table              | 매장 주문 손님이 사용하는 테이블            |
+| 주문 테이블 이름      | Order Table Name         | e.g. 1번 테이블 / 2번 테이블 / 3번 테이블 |
+| 주문 테이블 손님수     | Order Table Guest Number | 테이블을 사용하는 손님수                 |
+| 사용하지 않는 주문 테이블 | Cleared Order Table      | 손님이 사용중이지 않은 테이블              |
+| 사용중인 주문 테이블    | Occupied Order Table     | 손님이 사용중인 테이블                  |
+
+### 주문
 
 #### 포장 주문
 
-| 한글명   | 영문명                     | 설명                  |
-|-------|-------------------------|---------------------|
-| 포장 주문 | Takeout Order           | 손님이 주문한 메뉴를 포장하여 제공 |
-| 주문 대기 | Takeout Order Waiting   | 포장 주문을 요청된 상태       |
-| 주문 접수 | Takeout Order Accepted  | 포장 주문이 접수된 상태       |
-| 주문 제공 | Takeout Order Served    | 포장 주문한 메뉴를 제공한 상태   |
-| 주문 완료 | Takeout Order Completed | 포장 주문이 완료된 상태       |
+| 한글명      | 영문명                     | 설명                  |
+|----------|-------------------------|---------------------|
+| 포장 주문    | Takeout Order           | 손님이 주문한 메뉴를 포장하여 제공 |
+| 주문 대기    | Takeout Order Waiting   | 포장 주문을 요청된 상태       |
+| 주문 접수    | Takeout Order Accepted  | 포장 주문이 접수된 상태       |
+| 주문 제공    | Takeout Order Served    | 포장 주문한 메뉴를 제공한 상태   |
+| 주문 완료    | Takeout Order Completed | 포장 주문이 완료된 상태       |
+| 주문 항목    | Order Line Item         | 손님이 요청한 메뉴 모음       |
+| 주문 항목 수량 | Order Line Item Count   | 손님이 주문한 메뉴의 개수      |
 
 #### 배달 주문
 
-| 한글명    | 영문명                       | 설명                               |
-|--------|---------------------------|----------------------------------|
-| 배달 주문  | Delivery Order            | 손님이 구매한 메뉴를 매장밖 지정된 목적지로 포장하여 제공 |
-| 주문 대기  | Delivery Order Waiting    | 배달 주문을 요청된 상태                    |
-| 주문 접수  | Delivery Order Accepted   | 배달 주문이 접수된 상태                    |
-| 주문 제공  | Delivery Order Served     | 배달 주문한 메뉴를 전달할 준비한 상태            |
-| 주문 제공  | Delivery Order Delivering | 배달 주문한 메뉴를 전달중인 상태               |
-| 주문 제공  | Delivery Order Delivered  | 배달 주문한 메뉴를 전달이 완료된 상태            |
-| 주문 완료  | Delivery Order Completed  | 배달 주문이 완료된 상태                    |
-| 배달 담당자 | Delivery Rider            | 손님에게 메뉴를 전달하는 역할을 맡은 사람          |
-| 배달 주소  | Delivery Address          | e.g 서울특별시 강남구 테헤란로               |
+| 한글명      | 영문명                       | 설명                               |
+|----------|---------------------------|----------------------------------|
+| 배달 주문    | Delivery Order            | 손님이 구매한 메뉴를 매장밖 지정된 목적지로 포장하여 제공 |
+| 주문 대기    | Delivery Order Waiting    | 배달 주문을 요청된 상태                    |
+| 주문 접수    | Delivery Order Accepted   | 배달 주문이 접수된 상태                    |
+| 주문 제공    | Delivery Order Served     | 배달 주문한 메뉴를 전달할 준비한 상태            |
+| 배달 중     | Delivery Order Delivering | 배달 주문한 메뉴를 전달중인 상태               |
+| 배달 완료    | Delivery Order Delivered  | 배달 주문한 메뉴를 전달이 완료된 상태            |
+| 주문 완료    | Delivery Order Completed  | 배달 주문이 완료된 상태                    |
+| 배달 담당자   | Delivery Rider            | 손님에게 메뉴를 전달하는 역할을 맡은 사람          |
+| 배달 주소    | Delivery Address          | e.g 서울특별시 강남구 테헤란로               |
+| 주문 항목    | Order Line Item           | 손님이 요청한 메뉴 모음                    |
+| 주문 항목 수량 | Order Line Item Count     | 손님이 주문한 메뉴의 개수                   |
 
 #### 매장 주문
 
-| 한글명            | 영문명                    | 설명                            |
-|----------------|------------------------|-------------------------------|
-| 매장 주문          | Eat-In Order           | 매장 주문 손님이 사용하는 테이블            |
-| 주문 대기          | Eat-In Order Waiting   | 매장 주문이 요청된 상태                 |
-| 주문 접수          | Eat-In Order Accepted  | 매장 주문이 접수된 상태                 |
-| 주문 제공          | Eat-In Order Served    | 매장 주문한 메뉴를 제공한 상태             |
-| 주문 완료          | Eat-In Order Completed | 매장 주문이 완료된 상태                 |
-| 주문 테이블         | Eat-In Table           | 매장 주문 손님이 사용하는 테이블            |
-| 주문 테이블 이름      | Eat-In Table Name      | e.g. 1번 테이블 / 2번 테이블 / 3번 테이블 |
-| 사용하지 않는 주문 테이블 | Cleared Eat-In Table   | 손님이 사용중이지 않은 테이블              |
-| 사용중인 주문 테이블    | Occupied Eat-In Table  | 손님이 사용중인 테이블                  |
+| 한글명      | 영문명                    | 설명                 |
+|----------|------------------------|--------------------|
+| 매장 주문    | Eat-In Order           | 매장 주문 손님이 사용하는 테이블 |
+| 주문 대기    | Eat-In Order Waiting   | 매장 주문이 요청된 상태      |
+| 주문 접수    | Eat-In Order Accepted  | 매장 주문이 접수된 상태      |
+| 주문 제공    | Eat-In Order Served    | 매장 주문한 메뉴를 제공한 상태  |
+| 주문 완료    | Eat-In Order Completed | 매장 주문이 완료된 상태      |
+| 주문 항목    | Order Line Item        | 손님이 요청한 메뉴 모음      |
+| 주문 항목 수량 | Order Line Item Count  | 손님이 주문한 메뉴의 개수     |
 
 ## 모델링
+
+### 상품 (Product)
+
+- `Product`는 상품을 구매하기 위해 지불해야 하는 `Product Price`와 다른 `Product`와 식별할 수 있도록 `Product Name`을 가진다. 
+- `Product Name`에는 `Black Word`가 포함되어서는 안 되며, `Product Price`는 0원 이상이어야 한다. 
+- `Product Price`가 변경될 때, `Product Price`가 `Menu`의 `Menu Price`보다 크면 `Menu`는 `Hide Menu` 상태가 된다.
+
+### 메뉴 그룹 (Menu Group)
+
+- ``Menu Group`` 은 다른 `Menu` 모음을 대표하는  ``Menu Group Name`` 을 가진다.
+- ``Menu Group Name`` 은 비워 둘 수 없다.
+
+### 메뉴 (Menu)
+
+- `Menu`는 상품들을 대표하는 `Menu Name`, 손님이 지불해야 하는 `Menu Price`, 손님에게 제공하는 `Menu Product`, 분류를 위해 속하는 `Menu Group`을 가진다. 
+- 또한 `Menu`는 `Hide Menu`인지 `Displayed Menu`인지를 나타내는 상태를 가진다. 
+- `Menu Price`는 `Menu Product Price`의 합보다 크거나 같아야 하며, `Menu Name`에는 `Black Word`가 포함되어서는 안 된다. 
+- `Menu Product`가 존재하지 않으면 `Menu`를 생성할 수 없으며, `Menu Product`는 1개 이상이어야 하고 `Menu Product Count`의 총합이 0 이상이어야 한다. 
+- `Menu`의 `Menu Price`를 변경할 때 `Menu Price`는 `Menu Product Price`의 합보다 크거나 같아야 한다. 
+- `Menu`를 `Displayed Menu` 상태로 변경할 때 `Menu Price`가 `Menu Product Price`의 합보다 크거나 같아야 한다.
+
+### 주문 테이블 (Order Table)
+
+- `Order Table`은 다른 `Order Table`과 구별할 수 있도록 `Order Table Name`을 가지며, 테이블을 사용하는 손님 수를 표현하기 위해 `Order Table Guest Number`를 가진다. 
+- 또한 `Order Table`은 `Cleared Eat-In Table`인지 `Occupied Eat-In Table`인지를 나타내는 상태를 가진다. 
+- `Order Table Name`은 비워 둘 수 없으며, `Order Table Guest Number`는 0 이상이어야 한다. 
+- `Order Table`을 `Cleared Eat-In Table` 상태로 변경할 때는 `Eat-In Order Completed` 상태가 아닌 `Eat-In Order`가 존재하면 안 된다.
+
+### 주문 (Order)
+
+```mermaid
+stateDiagram-v2
+    [*] --> TakeoutOrderWaiting: 매장 주문 요청
+    TakeoutOrderWaiting --> TakeoutOrderAccepted: 접수
+    TakeoutOrderAccepted --> TakeoutOrderServed: 전달
+    TakeoutOrderServed --> TakeoutOrderCompleted: 완료
+    TakeoutOrderCompleted --> [*]
+
+    [*] --> DeliveryOrderWaiting: 배달 주문 요청
+    DeliveryOrderWaiting --> DeliveryOrderAccepted: 접수
+    DeliveryOrderAccepted --> DeliveryOrderServed: 전달
+    DeliveryOrderServed --> DeliveryOrderDelivering: 배달 시작
+    DeliveryOrderDelivering --> DeliveryOrderDelivered: 배달 완료
+    DeliveryOrderDelivered --> DeliveryOrderCompleted: 완료
+    DeliveryOrderCompleted --> [*]
+
+    [*] --> EatInOrderWaiting: 포장 주문 요청
+    EatInOrderWaiting --> EatInOrderAccepted: 접수
+    EatInOrderAccepted --> EatInOrderServed: 전달
+    EatInOrderServed --> EatInOrderCompleted: 완료
+    EatInOrderCompleted --> [*]
+```
+
+#### 1. 포장 주문 (Takeout Order)
+
+- `Takeout Order`는 손님이 요청한 메뉴 모음인 `Order Line Item`을 가지며, `Takeout Order Waiting`, `Takeout Order Accepted`, `Takeout Order Served`, `Takeout Order Completed` 상태를 관리한다. 
+- `Takeout Order`는 `Order Line Item Count`가 1 이상이어야 하며, 등록 시 `Takeout Order Waiting` 상태로 설정된다.
+- `Takeout Order`의 상태는 다음과 같은 순서로 변경된다.
+  1. 접수: `Takeout Order Waiting` ->  `Takeout Order Accepted`
+  2. 전달: `Takeout Order Accepted` -> `Takeout Order Served`
+  3. 완료: `Takeout Order Served` -> `Takeout Order Completed`
+
+#### 2. 배달 주문 (Delivery Order)
+
+- `Delivery Order`는 손님이 요청한 메뉴 모음인 `Order Line Item`과 배달 도착지인 `Delivery Address`를 가진다. 
+- `Delivery Order`는 `Delivery Order Waiting`, `Delivery Order Accepted`, `Delivery Order Served`, `Delivery Order Delivering`, `Delivery Order Delivered`, `Delivery Order Completed` 상태를 관리한다. 
+- `Delivery Order`는 `Order Line Item Count`가 1 이상이어야 하며, `Delivery Address`가 비워져 있어서는 안 되고, 등록 시 `Delivery Order Waiting` 상태로 설정된다. 
+- 'Delivery Order'의 상태는 다음과 같은 순서로 변경된다.
+  1. 접수: `Delivery Order Waiting` -> `Delivery Order Accepted`
+  2. 전달: `Delivery Order Accepted` -> `Delivery Order Served`
+  3. 배달 시작: `Delivery Order Served` -> `Delivery Order Delivering`
+  4. 배달 완료: `Delivery Order Delivering` -> `Delivery Order Delivered`
+  5. 완료: `Delivery Order Delivered` -> `Delivery Order Completed`
+
+#### 3. 매장 주문
+
+- `Eat-In Order`는 손님이 요청한 메뉴 모음인 `Order Line Item`을 가지며, `Eat-In Order Waiting`, `Eat-In Order Accepted`, `Eat-In Order Served`, `Eat-In Order Completed` 상태를 관리한다. 
+- `Eat-In Order`는 `Order Line Item Count`가 0 이상이어야 하며, 등록 시 `Eat-In Order Waiting` 상태로 설정되고 `Order Table` 상태를 `Occupied Eat-In Table`로 변경한다. 
+- `Eat-In Order`의 상태는 다음과 같은 순서로 변경된다.
+  1. 접수: `Eat-In Order Waiting` -> `Eat-In Order Accepted`
+  2. 전달: `Eat-In Order Accepted` -> `Eat-In Order Served`
+  3. 완료: `Eat-In Order Served` -> `Eat-In Order Completed`
+    - 상태가 변경될 때 `Order Table`을 `Cleared Eat-In Table` 로 설정한다.
