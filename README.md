@@ -185,72 +185,30 @@ docker compose -p kitchenpos up -d
 
 ### 상품 (Product)
 
-#### 속성
-
-- ``Product``는 상품을 구매하기 위해 지불해야하는 ``Product Price`` 를 가진다.
-- ``Product``는 다른 ``Product`` 과 식별할 수 있도록 ``Product Name`` 를 가진다.
-
-#### 행위
-
-- ``Product Price`` 를 생성한다.
-    * ``Product Name`` 은 ``Black Word`` 가 포함되어서는 안된다.
-    * ``Product Price`` 는 0원 이상이어야 한다.
-- ``Product Price`` 를 변경한다.
-    * ``Product Name`` 은 ``Black Word`` 가 포함되어서는 안된다.
-    * ``Product Price`` 는 0원 이상이어야 한다.
-    * ``Product Price`` 가 변경될 때 ``Menu`` 의 ``Menu Price`` 보다 크면 ``Menu`` 는 ``Hide Menu`` 가 된다.
+- `Product`는 상품을 구매하기 위해 지불해야 하는 `Product Price`와 다른 `Product`와 식별할 수 있도록 `Product Name`을 가진다. 
+- `Product Name`에는 `Black Word`가 포함되어서는 안 되며, `Product Price`는 0원 이상이어야 한다. 
+- `Product Price`가 변경될 때, `Product Price`가 `Menu`의 `Menu Price`보다 크면 `Menu`는 `Hide Menu` 상태가 된다.
 
 ### 메뉴 그룹 (Menu Group)
 
-#### 속성
-
 - ``Menu Group`` 은 다른 `Menu` 모음을 대표하는  ``Menu Group Name`` 을 가진다.
-
-### 행위
-
-- ``Menu Group Name`` 을 생성한다.
-    * ``Menu Group Name`` 은 비워 둘 수 없다.
+- ``Menu Group Name`` 은 비워 둘 수 없다.
 
 ### 메뉴 (Menu)
 
-#### 속성
-
-- ``Menu`` 는 상품들을 대표하는 ``Menu Name`` 을 가진다.
-- ``Menu`` 는 손님이 지불해야되는 ``Menu Price`` 를 가진다.
-- ``Menu`` 는 손님에게 제공하는 ``Menu Product`` 를 가진다.
-- ``Menu`` 는 분류를 위해 ``Menu Group`` 을 가진다.
-- ``Menu`` 는 `Hide Menu` 인지 ``Displayed Menu`` 인지를 나타내는 상태를 가진다.
-
-#### 행위
-
-- ``Menu`` 를 생성한다.
-    * ``Menu Price`` 는 ``Menu Product Price`` 의 합보다 크거나 같아야 한다.
-    * ``Menu Name`` 은 ``Black Word`` 가 포함되어서는 안된다.
-    * ``Menu Product`` 가 존재하지 않으면 ``Menu`` 를 생성할 수 없다.
-    * ``Menu Product`` 는 1개 이상이어야 하고 ``Menu Product Count`` 의 총 합이 0 이상이어야 한다.
-- ``Menu Price`` 를 변경한다.
-    * ``Menu Price`` 는 ``Menu Product Price`` 의 합보다 크거나 같아야 한다.
-- ``Menu``를 `Hide Menu` 상태로 변경한다.
-- ``Menu``를 `Displayed Menu` 상태로 변경한다.
-    * ``Menu Price`` 가 ``Menu Product Price`` 의 합보다 크거나 같아야 한다.
+- `Menu`는 상품들을 대표하는 `Menu Name`, 손님이 지불해야 하는 `Menu Price`, 손님에게 제공하는 `Menu Product`, 분류를 위해 속하는 `Menu Group`을 가진다. 
+- 또한 `Menu`는 `Hide Menu`인지 `Displayed Menu`인지를 나타내는 상태를 가진다. 
+- `Menu Price`는 `Menu Product Price`의 합보다 크거나 같아야 하며, `Menu Name`에는 `Black Word`가 포함되어서는 안 된다. 
+- `Menu Product`가 존재하지 않으면 `Menu`를 생성할 수 없으며, `Menu Product`는 1개 이상이어야 하고 `Menu Product Count`의 총합이 0 이상이어야 한다. 
+- `Menu`의 `Menu Price`를 변경할 때 `Menu Price`는 `Menu Product Price`의 합보다 크거나 같아야 한다. 
+- `Menu`를 `Displayed Menu` 상태로 변경할 때 `Menu Price`가 `Menu Product Price`의 합보다 크거나 같아야 한다.
 
 ### 주문 테이블 (Order Table)
 
-#### 속성
-
-- ``Order Table`` 은 다른 ``Order Table`` 과 구별할 수 있도록 ``Order Table Name`` 을 가진다.
-- ``Order Table`` 은 테이블을 사용하는 손님수를 표현하기 위해  ``Order Table Guest Number`` 를 가진다.
-- ``Order Table`` 은 ``Cleared Eat-In Table`` 인지 ``Occupied Eat-In Table`` 인지를 나타내는 상태를 가진다.
-
-#### 행위
-
-- ``Order Table`` 을 생성한다.
-    * ``Order Table Name`` 은 비워 둘 수 없다.
-- ``Order Table`` 을 방문한 손님 수를 변경한다.
-    * ``Order Table Guest Number`` 는 0 이상이어야 한다.
-- ``Order Table`` 을 ``Occupied Order Table`` 상태로 변경한다.
-- ``Order Table`` 을 ``Cleared Eat-In Table`` 상태로 변경한다.
-    * ``Eat-In Order Completed`` 상태가 아닌 ``Eat-In Order`` 가 존재한다면 ``Cleared Eat-In Table`` 상태로 설정할 수 없다.
+- `Order Table`은 다른 `Order Table`과 구별할 수 있도록 `Order Table Name`을 가지며, 테이블을 사용하는 손님 수를 표현하기 위해 `Order Table Guest Number`를 가진다. 
+- 또한 `Order Table`은 `Cleared Eat-In Table`인지 `Occupied Eat-In Table`인지를 나타내는 상태를 가진다. 
+- `Order Table Name`은 비워 둘 수 없으며, `Order Table Guest Number`는 0 이상이어야 한다. 
+- `Order Table`을 `Cleared Eat-In Table` 상태로 변경할 때는 `Eat-In Order Completed` 상태가 아닌 `Eat-In Order`가 존재하면 안 된다.
 
 ### 주문 (Order)
 
@@ -279,71 +237,31 @@ stateDiagram-v2
 
 #### 1. 포장 주문 (Takeout Order)
 
-##### 속성
+- `Takeout Order`는 손님이 요청한 메뉴 모음인 `Order Line Item`을 가지며, `Takeout Order Waiting`, `Takeout Order Accepted`, `Takeout Order Served`, `Takeout Order Completed` 상태를 관리한다. 
+- `Takeout Order`는 `Order Line Item Count`가 1 이상이어야 하며, 등록 시 `Takeout Order Waiting` 상태로 설정된다.
+- `Takeout Order`의 상태는 다음과 같은 순서로 변경된다.
+  1. 접수: `Takeout Order Waiting` ->  `Takeout Order Accepted`
+  2. 전달: `Takeout Order Accepted` -> `Takeout Order Served`
+  3. 완료: `Takeout Order Served` -> `Takeout Order Completed`
 
-- ``Takeout Order`` 는 손님이 요청한 메뉴 모음인 ``Order Line Item`` 을 가진다.
-- ``Takeout Order`` 는 상태를 관리하기
-  위해 ``Takeout Order Waiting``, ``Takeout Order Accepted``, ``Takeout Order Served``, ``Takeout Order Completed`` 를 가진다.
+#### 2. 배달 주문 (Delivery Order)
 
-##### 행위
-
-- ``Takeour Order`` 를 등록한다.
-    * ``Order Line Item Count`` 가 1 이상이어야 한다.
-    * ``Takeout Order Waiting`` 상태로 설정된다.
-- ``Takeout Order`` 를 ``Takeout Order Accepted`` 상태로 변경한다.
-    * ``Takeout Order Waiting`` 상태에서만 변경할 수 있다.
-- ``Takeout Order`` 를 ``Takeout Order Served`` 상태로 변경한다.
-    * ``Takeout Order Accepted`` 상태에서만 변경할 수 있다.
-- ``Takeout Order`` 를 ``Takeout Order Completed`` 상태로 변경한다.
-    * ``Takeout Order Served`` 상태에서만 변경할 수 있다.
-
-#### 2. 배달 주문
-
-##### 속성
-
-- ``Delivery Order`` 는 손님이 요청한 메뉴 모음인 ``Order Line Item`` 을 가진다.
-- ``Delivery Order`` 는 배달 도착지인 ``Delivery Address`` 를 가진다.
-- ``Delivery Order`` 는 상태를 관리하기
-  위해 ``Delivery Order Waiting``, ``Delivery Order Accepted``, ``Delivery Order Served``, ``Delivery Order Delivering``, ``Delivery Order Delivered``, ``Delivery Order Completed``
-  를 가진다.
-
-##### 행위
-
-- ``Delivery Order`` 를 등록한다.
-    * ``Order Line Item Count`` 가 1 이상이어야 한다.
-    * ``Delivery Address`` 가 비워져 있어서는 안된다.
-    * ``Delivery Order Waiting`` 상태로 설정된다.
-- ``Delivery Order`` 를 ``Delivery Order Accepted`` 상태로 변경한다.
-    * ``Delivery Order Waiting`` 상태에서만 변경할 수 있다
-    * ``Delivery Rider`` 를 호출한다.
-- ``Delivery Order`` 를 ``Delivery Order Served`` 상태로 변경한다.
-    * ``Delivery Order Accepted`` 상태에서만 변경할 수 있다.
-- ``Delivery Order`` 를 ``Delivery Order Delivering`` 상태로 변경한다.
-    * ``Delivery Order Served`` 상태에서만 변경할 수 있다.
-- ``Delivery Order`` 를 ``Delivery Order Delivered`` 상태로 변경한다.
-    * ``Delivery Order Delivering`` 상태에서만 변경할 수 있다.
-- ``Delivery Order`` 를 ``Delivery Order Completed`` 상태로 변경한다.
-    * ``Delivery Order Delivered`` 상태에서만 변경할 수 있다.
+- `Delivery Order`는 손님이 요청한 메뉴 모음인 `Order Line Item`과 배달 도착지인 `Delivery Address`를 가진다. 
+- `Delivery Order`는 `Delivery Order Waiting`, `Delivery Order Accepted`, `Delivery Order Served`, `Delivery Order Delivering`, `Delivery Order Delivered`, `Delivery Order Completed` 상태를 관리한다. 
+- `Delivery Order`는 `Order Line Item Count`가 1 이상이어야 하며, `Delivery Address`가 비워져 있어서는 안 되고, 등록 시 `Delivery Order Waiting` 상태로 설정된다. 
+- 'Delivery Order'의 상태는 다음과 같은 순서로 변경된다.
+  1. 접수: `Delivery Order Waiting` -> `Delivery Order Accepted`
+  2. 전달: `Delivery Order Accepted` -> `Delivery Order Served`
+  3. 배달 시작: `Delivery Order Served` -> `Delivery Order Delivering`
+  4. 배달 완료: `Delivery Order Delivering` -> `Delivery Order Delivered`
+  5. 완료: `Delivery Order Delivered` -> `Delivery Order Completed`
 
 #### 3. 매장 주문
 
-##### 속성
-
-- ``Eat-In Order`` 는 손님이 요청한 메뉴 모음인 ``Order Line Item`` 을 가진다.
-- ``Eat-In Order`` 는 상태를 관리하기
-  위해 ``Eat-In Order Waiting``, ``Eat-In Order Accepted``, ``Eat-In Order Served``, ``Eat-In Order Completed`` 를 가진다.
-
-##### 행위
-
-- ``Eat-In Order`` 를 등록한다.
-    * ``Order Line Item Count`` 가 0 이상이어야 한다.
-    * ``Eat-In Order Waiting`` 상태로 설정된다.
-    * ``Order Table`` 상태를 ``Occupied Eat-In Table`` 로 변경한다.
-- ``Eat-In Order`` 를 ``Eat-In Order Accepted`` 상태로 변경한다.
-  * ``Eat-In Order Waiting`` 상태에서만 변경할 수 있다
-- ``Eat-In Order`` 를 ``Eat-In Order Served`` 상태로 변경한다.
-  * ``Eat-In Order Accepted`` 상태에서만 변경할 수 있다.
-- ``Eat-In Order`` 를 ``Eat-In Order Completed`` 상태로 변경한다.
-  * ``Eat-In Order Served`` 상태에서만 변경할 수 있다.
-  * ``Order Table`` 을 빈 테이블로 설정한다.
-
+- `Eat-In Order`는 손님이 요청한 메뉴 모음인 `Order Line Item`을 가지며, `Eat-In Order Waiting`, `Eat-In Order Accepted`, `Eat-In Order Served`, `Eat-In Order Completed` 상태를 관리한다. 
+- `Eat-In Order`는 `Order Line Item Count`가 0 이상이어야 하며, 등록 시 `Eat-In Order Waiting` 상태로 설정되고 `Order Table` 상태를 `Occupied Eat-In Table`로 변경한다. 
+- `Eat-In Order`의 상태는 다음과 같은 순서로 변경된다.
+  1. 접수: `Eat-In Order Waiting` -> `Eat-In Order Accepted`
+  2. 전달: `Eat-In Order Accepted` -> `Eat-In Order Served`
+  3. 완료: `Eat-In Order Served` -> `Eat-In Order Completed`
+    - 상태가 변경될 때 `Order Table`을 `Cleared Eat-In Table` 로 설정한다.
